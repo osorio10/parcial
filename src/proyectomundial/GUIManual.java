@@ -5,8 +5,8 @@ import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -62,8 +62,8 @@ public class GUIManual extends JFrame {
     
     private JPanel jPanelMain;
     
-    private boolean haySesion;
-    private String [][] usuarios;  
+    private final boolean haySesion;
+    private final String [][] usuarios;  
     
     
     public GUIManual() {
@@ -194,6 +194,7 @@ public class GUIManual extends JFrame {
         jPanelMenu.add(jPanelMenuHome);
         
         btnHome.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 System.out.println("Home");
                 accionHome();
@@ -242,6 +243,7 @@ public class GUIManual extends JFrame {
         jPanelMenu.add(jPanelMenuSelecciones);
         
         btnSelecciones.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 System.out.println("Selecciones");
                 accionSelecciones();
@@ -278,10 +280,8 @@ public class GUIManual extends JFrame {
                 JButton cargarFile = new JButton();
                 cargarFile.setText("Seleccione el archivo");
                 seleccionesPanel.add(cargarFile);
-                cargarFile.addActionListener(new ActionListener() {
-                    public void actionPerformed(ActionEvent evt) {
-                        cargarFileSelecciones();
-                    }
+                cargarFile.addActionListener((ActionEvent evt) -> {
+                    cargarFileSelecciones();
                 });
             }
 
@@ -314,6 +314,7 @@ public class GUIManual extends JFrame {
         jPanelMenu.add(jPanelMenuResultados);
         
         btnResultados.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 accionResultados();
             }
@@ -350,10 +351,8 @@ public class GUIManual extends JFrame {
                 JButton cargarFile = new JButton();
                 cargarFile.setText("Seleccione el archivo");
                 resultadosPanel.add(cargarFile);
-                cargarFile.addActionListener(new ActionListener() {
-                    public void actionPerformed(ActionEvent evt) {
-                        cargarFileResultados();
-                    }
+                cargarFile.addActionListener((ActionEvent evt) -> {
+                    cargarFileResultados();
                 });
             }
 
@@ -388,6 +387,7 @@ public class GUIManual extends JFrame {
         jPanelMenu.add(jPanelMenuDashboardSel);
         
         btnDashboardSel.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 System.out.println("Dashboard Selecciones");
                 accionDashboardSel();
@@ -409,13 +409,16 @@ public class GUIManual extends JFrame {
         }
         
         JTextArea a = new JTextArea();
-        a.setText("En esta sección, teniendo en cuenta los datos que fueron cargados en la matriz de selecciones \n"
-                + "se deben mostrar los siguientes datos:\n\n"
-                + "1. Total de selecciones Cargadas \n"
-                + "2. Número de selecciones por continente (Se puede usar una tabla para pintar esto) \n"
-                + "3. Cantidad de nacionalidades diferentes de los directores técnicos \n"
-                + "4. Ranking de nacionalidades de directores técnicos \n\n"
-                + "Utilice los diferentes componentes gráficos para construir un dashboard lo más estético posible");
+        a.setText("""
+                  En esta secci\u00f3n, teniendo en cuenta los datos que fueron cargados en la matriz de selecciones 
+                  se deben mostrar los siguientes datos:
+                  
+                  1. Total de selecciones Cargadas 
+                  2. N\u00famero de selecciones por continente (Se puede usar una tabla para pintar esto) 
+                  3. Cantidad de nacionalidades diferentes de los directores t\u00e9cnicos 
+                  4. Ranking de nacionalidades de directores t\u00e9cnicos 
+                  
+                  Utilice los diferentes componentes gr\u00e1ficos para construir un dashboard lo m\u00e1s est\u00e9tico posible""");
         
         jPanelMain.removeAll();
         jPanelMain.add(a);
@@ -446,6 +449,7 @@ public class GUIManual extends JFrame {
         jPanelMenu.add(jPanelMenuDashboardRes);
         
         btnDashboardRes.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 System.out.println("Dashboard Resultados");
                 accionDashboardRes();
@@ -468,17 +472,20 @@ public class GUIManual extends JFrame {
         }
         
         JTextArea a = new JTextArea();
-        a.setText("En esta sección, teniendo en cuenta los datos que fueron cargados en la matriz de resultados \n"
-                + "se deben mostrar los siguientes datos:\n\n"
-                + "1. Número de partidos cargados \n"
-                + "2. Promedio de goles por partido \n"
-                + "3. Partido con más goles y partido con menos goles \n"
-                + "4. Número de partidos dónde hubo un ganador y número de partidos dónde hubo empate \n"
-                + "5. Selcción o selecciones con más goles y con menos goles \n"
-                + "6. Selección con más puntos y menos puntos \n"
-                + "7. Continente o continentes con más goles y menos goles \n"
-                + "8. Clasificados por cada grupo (Clasifican los dos primeros equipos de cada grupo) \n\n"
-                + "Utilice los diferentes componentes gráficos para construir un dashboard lo más estético posible");
+        a.setText("""
+                  En esta secci\u00f3n, teniendo en cuenta los datos que fueron cargados en la matriz de resultados 
+                  se deben mostrar los siguientes datos:
+                  
+                  1. N\u00famero de partidos cargados 
+                  2. Promedio de goles por partido 
+                  3. Partido con m\u00e1s goles y partido con menos goles 
+                  4. N\u00famero de partidos d\u00f3nde hubo un ganador y n\u00famero de partidos d\u00f3nde hubo empate 
+                  5. Selcci\u00f3n o selecciones con m\u00e1s goles y con menos goles 
+                  6. Selecci\u00f3n con m\u00e1s puntos y menos puntos 
+                  7. Continente o continentes con m\u00e1s goles y menos goles 
+                  8. Clasificados por cada grupo (Clasifican los dos primeros equipos de cada grupo) 
+                  
+                  Utilice los diferentes componentes gr\u00e1ficos para construir un dashboard lo m\u00e1s est\u00e9tico posible""");
         
         jPanelMain.removeAll();
         jPanelMain.add(a);
@@ -542,15 +549,13 @@ public class GUIManual extends JFrame {
                 String line = entrada.nextLine();
                 String[] columns = line.split(",");
 
-                for (int j = 0; j < columns.length; j++) {
-                    selecciones[i][j] = columns[j];
-                }
+                System.arraycopy(columns, 0, selecciones[i], 0, columns.length);
                 i++;
             }
 
             pintarTablaSelecciones();
 
-        } catch (Exception e) {
+        } catch (FileNotFoundException e) {
             System.out.println(e.getMessage());
         } finally {
             if (entrada != null) {
@@ -640,15 +645,13 @@ public class GUIManual extends JFrame {
                 String line = entrada.nextLine();
                 String[] columns = line.split(",");
 
-                for (int j = 0; j < columns.length; j++) {
-                    resultados[i][j] = columns[j];
-                }
+                System.arraycopy(columns, 0, resultados[i], 0, columns.length);
                 i++;
             }
 
             pintarTablaResultados();
 
-        } catch (Exception e) {
+        } catch (FileNotFoundException e) {
             System.out.println(e.getMessage());
         } finally {
             if (entrada != null) {
@@ -748,10 +751,8 @@ public class GUIManual extends JFrame {
     
     public static void main(String args[]) {
         
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new GUIManual().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new GUIManual().setVisible(true);
         });
     }
 }
