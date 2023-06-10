@@ -224,6 +224,26 @@ public class GUIManual extends JFrame {
         jPanelMain.revalidate();
     }
     
+    private void Contra() {
+        int tamaño = usuarios.length;
+        int i = 0;
+        String entradaUsuario = JOptionPane.showInputDialog("Introduzca Usuario:");
+        String entradaContraseña = JOptionPane.showInputDialog("Introduzca Contraseña:");
+
+        while (i < tamaño) {
+            if (entradaUsuario.equals(usuarios[i][0]) && entradaContraseña.equals(usuarios[i][1])) {
+                haySesion = true;
+                break;
+            }
+            i++;
+        }
+
+        if (haySesion) {
+            JOptionPane.showMessageDialog(null, "Inicio de sesión exitoso");
+        } else {
+            JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrectos");
+        }
+    }
     /**
      * Función que se encarga de ajustar los elementos gráficos que componente la opción de navegación de SELECCIONES
      * Define estilos, etiquetas, iconos que decoran la opción del Menú. 
